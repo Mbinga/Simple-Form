@@ -9,18 +9,32 @@ function App() {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [confirmpassword, setConfirmPassword] = useState("");
+    const [form, setForm] = useState(false);
     return (
         <div className="App">
-            <Form
-                email={email}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-                name={name}
-                setName={setName}
-                confirmpassword={confirmpassword}
-                setConfirmPassword={setConfirmPassword}
-            />
+            {form ? (
+                <StepTwo
+                    name={name}
+                    setName={setName}
+                    email={email}
+                    setEmail={setEmail}
+                    password={password}
+                    setPassword={setPassword}
+                    setForm={setForm}
+                />
+            ) : (
+                <Form
+                    email={email}
+                    setEmail={setEmail}
+                    password={password}
+                    setPassword={setPassword}
+                    name={name}
+                    setName={setName}
+                    confirmpassword={confirmpassword}
+                    setConfirmPassword={setConfirmPassword}
+                    setForm={setForm}
+                />
+            )}
             <Footer />
         </div>
     );

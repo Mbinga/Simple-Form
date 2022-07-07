@@ -1,5 +1,3 @@
-import StepTwo from "./StepTwo";
-
 const Form = ({
     email,
     setEmail,
@@ -9,11 +7,20 @@ const Form = ({
     setName,
     confirmpassword,
     setConfirmPassword,
+    setForm,
+    form,
 }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(email, password);
         console.log("submitted !");
+        if (confirmpassword !== password) {
+            alert("mdp non identiques");
+        } else if (!email || !password || !name) {
+            alert("Renseignez tous les champs");
+        } else {
+            setForm(true);
+        }
     };
     const handleEmailChange = (event) => {
         const value = event.target.value;
@@ -44,7 +51,7 @@ const Form = ({
                     value={name}
                     onChange={handleNameChange}
                 />
-                <p>Email</p>
+                <p>Email :</p>
                 <input
                     placeholder="Email"
                     type="email"
@@ -64,6 +71,10 @@ const Form = ({
                     }
                 />
                 <p>Confirm Password :</p>
+                {confirmpassword !== password ? (
+                    <span>Les mdps ne sont pas identiques</span>
+                ) : null}
+                <br />
                 <input
                     placeholder="Confirm Password"
                     type="password"
